@@ -1,32 +1,27 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
- * print_number - print any integer using putchar
- * @n: integer to be printed
+ * rot13 - encodes a string in rot13
+ * @s: string to be encoded
+ *
+ * Return: the resulting string
  */
-
-void print_number(int n)
+char *rot13(char *s)
 {
-	int count, y, k;
+	int i, j;
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
-	y = 1000000000;
-
-	if (n == 0)
-		_putchar('0');
-	else if (n > 0)
-		n *= -1;
-	else
-		_putchar('-');
-	for (count = 0; count < 10; count++, y /= 10)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (n / y == 0)
-			continue;
-		else
+		for (j = 0; a[j] != '\0'; j++)
 		{
-			k = (-(n / y) % 10);
-			if (k < 0)
-				k *= -1;
-			_putchar(k + '0');
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
 		}
 	}
+	return (s);
 }
